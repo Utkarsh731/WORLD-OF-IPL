@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="tryscript.js" async></script>
+    <title>Cardflip</title>
+    <style>
+        body {
+            margin: 0;
+            background: radial-gradient(#9D5900, #3D2200);
+        }
+
+        .page-title {
+            color: #FF6D00;
+            font-family: Creepy, serif;
+            font-weight: normal;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .game-info-container {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .game-info {
+            font-family: Lunacy, serif;
+            color: #FFBB89;
+            font-size: 3em;
+        }
+
+        .game-container {
+            display: grid;
+            grid-template-columns: repeat(4, auto);
+            grid-gap: 10px;
+            margin: 50px;
+            justify-content: center;
+            perspective: 500px;
+        }
+
+        .card {
+            position: relative;
+            height: 175px;
+            width: 125px;
+        }
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            border-width: 1px;
+            border-style: solid;
+            transition: transform 500ms ease-in-out;
+        }
+
+        .card.visible .card-back {
+            transform: rotateY(-180deg);
+        }
+
+        .card.visible .card-front {
+            transform: rotateY(0)
+        }
+        .card-back {
+            background-color: white;
+            border-color: #FF6D00;
+        }
+
+        .card-front {
+            background-color: #FFBB89;
+            border-color: #333;
+            transform: rotateY(180deg);
+        }
+
+
+        .overlay-text {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            color: #FF6D00;
+            font-family: Creepy, serif;
+        }
+
+        .overlay-text-small {
+            font-size: .3em;
+        }
+
+        .overlay-text.visible {
+            display: flex;
+            flex-direction: column;
+            animation: overlay-grow 500ms forwards;
+        }
+
+        @keyframes overlay-grow {
+            from {
+                background-color: rgba(0, 0, 0, 0);
+                font-size: 0;
+            }
+            to {
+                background-color: rgba(0, 0, 0, .8);
+                font-size: 10em;
+            }
+        }
+
+        .card-back {
+            background-color: white;
+            border-color: #FF6D00;
+        }
+
+        .card-front {
+            background-color: #FFBB89;
+            border-color: #333;
+            transform: rotateY(180deg);
+        }
+
+        .card-value {
+            transition: transform 100ms ease-in-out;
+            transform: scale(.9);
+        }
+
+        .card-front:hover .card-value {
+            transform: scale(1);
+        }
+        .card-face:hover {
+
+        }
+
+
+
+
+        .spider {
+            align-self: flex-start;
+            transform: translateY(-10px);
+            transition: transform 100ms ease-in-out;
+        }
+
+        .card-back:hover .spider {
+            transform: translateY(0)
+        }
+
+        @media (max-width: 600px) {
+            .game-container {
+                grid-template-columns: repeat(2, auto);
+            }
+
+            .game-info-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<h1 class="page-title">IPL Card Game</h1>
+<div class="overlay-text visible">
+    Click to Start
+</div>
+<div id="game-over-text" class="overlay-text">
+    GAME OVER
+    <span class="overlay-text-small">Click to Restart</span>
+</div>
+<div id="victory-text" class="overlay-text">
+    VICTORY
+    <span class="overlay-text-small">Click to Restart</span>
+</div>
+<div class="game-container">
+    <div class="game-info-container">
+        <div class="game-info">
+            Time <span id="time-remaining">120</span>
+        </div>
+        <div class="game-info">
+            Flips <span id="flips">0</span>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-back card-face">
+            <img class="spider" src="Assets/Images/ipllogo.png">
+        </div>
+        <div class="card-front card-face">
+            <img class="card-value" src="Assets/Images/Dhruv Shorey.png">
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-back card-face">
+            <img class="spider" src="Assets/Images/ipllogo.png">
+        </div>
+        <div class="card-front card-face">
+            <img class="card-value" src="Assets/Images/bravo.jpg">
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-back card-face">
+            <img class="spider" src="Assets/Images/ipllogo.png">
+        </div>
+        <div class="card-front card-face">
+            <img class="card-value" src="Assets/Images/Chris Woakes.png">
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-back card-face">
+            <img class="spider" src="Assets/Images/ipllogo.png">
+        </div>
+        <div class="card-front card-face">
+            <img class="card-value" src="Assets/Images/suresh.jpg">
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-back card-face">
+            <img class="spider" src="Assets/Images/ipllogo.png">
+        </div>
+        <div class="card-front card-face">
+            <img class="card-value" src="Assets/Images/Chris Gayle.png">
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-back card-face">
+            <img class="spider" src="Assets/Images/ipllogo.png">
+        </div>
+        <div class="card-front card-face">
+            <img class="card-value" src="Assets/Images/Harbhajan Singh.png">
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-back card-face">
+            <img class="spider" src="Assets/Images/ipllogo.png">
+        </div>
+        <div class="card-front card-face">
+            <img class="card-value" src="Assets/Images/kohli.jpg">
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-back card-face">
+            <img class="spider" src="Assets/Images/ipllogo.png">
+        </div>
+        <div class="card-front card-face">
+            <img class="card-value" src="Assets/Images/Deepak Chahar.png">
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-back card-face">
+            <img class="spider" src="Assets/Images/ipllogo.png">
+        </div>
+        <div class="card-front card-face">
+            <img class="card-value" src="Assets/Images/Mahendra Singh Dhoni.png">
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-back card-face">
+            <img class="spider" src="Assets/Images/ipllogo.png">
+        </div>
+        <div class="card-front card-face">
+            <img class="card-value" src="Assets/Images/Dhruv Shorey.png">
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-back card-face">
+            <img class="spider" src="Assets/Images/ipllogo.png">
+        </div>
+        <div class="card-front card-face">
+            <img class="card-value" src="Assets/Images/bravo.jpg">
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-back card-face">
+            <img class="spider" src="Assets/Images/ipllogo.png">
+        </div>
+        <div class="card-front card-face">
+            <img class="card-value" src="Assets/Images/Chris Woakes.png">
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-back card-face">
+            <img class="spider" src="Assets/Images/ipllogo.png">
+        </div>
+        <div class="card-front card-face">
+            <img class="card-value" src="Assets/Images/suresh.jpg">
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-back card-face">
+            <img class="spider" src="Assets/Images/ipllogo.png">
+        </div>
+        <div class="card-front card-face">
+            <img class="card-value" src="Assets/Images/Chris Gayle.png">
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-back card-face">
+            <img class="spider" src="Assets/Images/ipllogo.png">
+        </div>
+        <div class="card-front card-face">
+            <img class="card-value" src="Assets/Images/Harbhajan Singh.png">
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-back card-face">
+            <img class="spider" src="Assets/Images/ipllogo.png">
+        </div>
+        <div class="card-front card-face">
+            <img class="card-value" src="Assets/Images/kohli.jpg">
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-back card-face">
+            <img class="spider" src="Assets/Images/ipllogo.png">
+        </div>
+        <div class="card-front card-face">
+            <img class="card-value" src="Assets/Images/Deepak Chahar.png">
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-back card-face">
+            <img class="spider" src="Assets/Images/ipllogo.png">
+        </div>
+        <div class="card-front card-face">
+            <img class="card-value" src="Assets/Images/Mahendra Singh Dhoni.png">
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-back card-face">
+            <img class="spider" src="Assets/Images/ipllogo.png">
+        </div>
+        <div class="card-front card-face">
+            <img class="card-value" src="Assets/Images/Imran Tahir.png">
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-back card-face">
+            <img class="spider" src="Assets/Images/ipllogo.png">
+        </div>
+        <div class="card-front card-face">
+            <img class="card-value" src="Assets/Images/Imran Tahir.png">
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+</div>
+
+</body>
+</html>

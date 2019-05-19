@@ -49,10 +49,10 @@ class MixOrMatch {
         this.busy = true;
         setTimeout(() => {
             this.audioController.startMusic();
-            this.shuffleCards(this.cardsArray);
-            this.countdown = this.startCountdown();
-            this.busy = false;
-        }, 500)
+        this.shuffleCards(this.cardsArray);
+        this.countdown = this.startCountdown();
+        this.busy = false;
+    }, 500)
         this.hideCards();
         this.timer.innerText = this.timeRemaining;
         this.ticker.innerText = this.totalClicks;
@@ -60,10 +60,10 @@ class MixOrMatch {
     startCountdown() {
         return setInterval(() => {
             this.timeRemaining--;
-            this.timer.innerText = this.timeRemaining;
-            if(this.timeRemaining === 0)
-                this.gameOver();
-        }, 1000);
+        this.timer.innerText = this.timeRemaining;
+        if(this.timeRemaining === 0)
+            this.gameOver();
+    }, 1000);
     }
     gameOver() {
         clearInterval(this.countdown);
@@ -78,8 +78,8 @@ class MixOrMatch {
     hideCards() {
         this.cardsArray.forEach(card => {
             card.classList.remove('visible');
-            card.classList.remove('matched');
-        });
+        card.classList.remove('matched');
+    });
     }
     flipCard(card) {
         if(this.canFlipCard(card)) {
@@ -116,9 +116,9 @@ class MixOrMatch {
         this.busy = true;
         setTimeout(() => {
             card1.classList.remove('visible');
-            card2.classList.remove('visible');
-            this.busy = false;
-        }, 1000);
+        card2.classList.remove('visible');
+        this.busy = false;
+    }, 1000);
     }
     shuffleCards(cardsArray) { // Fisher-Yates Shuffle Algorithm.
         for (let i = cardsArray.length - 1; i > 0; i--) {
@@ -149,13 +149,13 @@ function ready() {
     overlays.forEach(overlay => {
         overlay.addEventListener('click', () => {
             overlay.classList.remove('visible');
-            game.startGame();
-        });
-    });
+    game.startGame();
+});
+});
 
     cards.forEach(card => {
         card.addEventListener('click', () => {
             game.flipCard(card);
-        });
-    });
+});
+});
 }
