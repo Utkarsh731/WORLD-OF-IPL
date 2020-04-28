@@ -1,0 +1,402 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+
+<!--Font -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap" rel="stylesheet">
+
+<!--Font Awesome CSS -->
+<link rel="stylesheet" href="https://d1nu2br1yr2980.cloudfront.net/fontawesome-pro-5.11.2/css/all.min.css">
+
+<!-- bootstrap css -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<div id = "app"></div>
+
+
+body {
+    font-family: 'Roboto', sans-serif !important;
+    background-color: rgba(245, 246, 250, 1) !important;
+}
+:root {
+    --themeColor: #366eaf;
+    --contentColor: #666666;
+    --borderColor: #e7ecf1;
+    --textColor: #4a4a4a;
+    --darkThemeColor: #230066;
+    --white: #fff;
+    --black: #000;
+}
+.text-lightGreen {
+    color: #33cc33 !important;
+}
+.text-theme {
+    color: var(--themeColor) !important;
+}
+.text-orange {
+    color: #ff8c1a !important;
+}
+.text-red {
+    color: #ff3300 !important;
+}
+.text-yellow {
+    color: #ffcf00 !important;
+}
+.text-gray {
+    color: var(--contentColor) !important;
+}
+.text-indigo {
+    color: var(--indigo) !important;
+}
+.text-purple {
+    color: var(--purple) !important;
+}
+.text-pink {
+    color: var(--pink) !important;
+}
+.text-teal {
+    color: var(--teal) !important;
+}
+.text-cyan {
+    color: var(--cyan) !important;
+}
+.text-lightGray {
+    color: #909090 !important;
+}
+.text-light {
+    color: #ccccff !important;
+}
+.text-lightTeal {
+    color: #85adad !important;
+}
+.text-gold {
+    color: #FFD700 !important;
+}
+.bg-red {
+    background-color: #cc0000 !important;
+}
+.bg-orange {
+    background-color: var(--orange) !important;
+}
+.bg-green {
+    background-color: var(--green) !important;
+}
+.bg-lightGreen {
+    background-color: #2eb82e !important;
+}
+.bg-indigo {
+    background-color: var(--indigo) !important;
+}
+.bg-gray {
+    background-color: #909090 !important;
+}
+.bg-purple {
+    background-color: var(--purple) !important;
+}
+.bg-transparent {
+    background-color: transparent !important;
+}
+.bg-theme {
+    background-color: var(--themeColor) !important;
+}
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.flex-item {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+.fx-b100 {
+    flex-basis: 100% !important;
+    max-width: 100% !important;
+}
+.fx-b70 {
+    flex-basis: 70% !important;
+    max-width: 70% !important;
+}
+.fx-b75 {
+    flex-basis: 75% !important;
+    max-width: 75%;
+}
+.fx-b60 {
+    flex-basis: 60% !important;
+    max-width: 60% !important;
+}
+.fx-b65 {
+    flex-basis: 65% !important;
+    max-width: 65% !important;
+}
+.fx-b50 {
+    flex-basis: 50% !important;
+    max-width: 50% !important;
+}
+.fx-b55{
+    flex-basis: 55% !important;
+    max-width: 55% !important;
+}
+.fx-b40 {
+    flex-basis: 40% !important;
+    max-width: 40% !important;
+}
+.fx-b33 {
+    flex-basis: 33.33% !important;
+    max-width: 33.33% !important;
+}
+.fx-b30 {
+    flex-basis: 30% !important;
+    max-width: 30% !important;
+}
+.fx-b35 {
+    flex-basis: 35% !important;
+    max-width: 35% !important;
+}
+.fx-b45 {
+    flex-basis: 45% !important;
+    max-width: 45% !important;
+}
+.fx-b25 {
+    flex-basis: 25% !important;
+    max-width: 25% !important;
+}
+.fx-b20 {
+    flex-basis: 20% !important;
+    max-width: 20% !important;
+}
+.fx-b15 {
+    flex-basis: 15% !important;
+    max-width: 15% !important;
+}
+.fx-b10 {
+    flex-basis: 10% !important;
+    max-width: 10% !important;
+}
+.fx-b5{
+    flex-basis: 5% !important;
+    max-width: 5% !important;
+}
+.listStyleNone {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.btn-transparent {
+    padding: 0;
+    background-color: transparent;
+    position: relative;
+    text-align: center;
+    transition: all .2s ease-in-out;
+    margin-left: 6px;
+    width: 25px !important;
+    height: 25px !important;
+    border-radius: 6px !important;
+    border-width: 2px;
+}
+.btn-transparent i {
+    font-size: 13px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.btn-transparent:last-of-type {
+    margin-right: 0;
+}
+.btn-transparent:hover {
+    transition: all ease-in-out 0.2s;
+    transform: translateY(-2px);
+    box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2);
+}
+.btn-transparent-primary {
+    color: #0063cc;
+    background-color: rgba(204, 229, 255, 0.7);
+    border-color: #b8daff;
+}
+.btn-transparent-danger {
+    color: #c32230;
+    background-color: rgba(248, 215, 218, 0.7);
+    border-color: #f5c6cb;
+}
+.btn-transparent-primary:hover {
+    color: #fff  !important;
+    background-color: #03A9F4 !important;
+    border-color: #66b0ff;
+}
+.btn-transparent-danger:hover {
+    color: #fff !important;
+    background-color: #ec6471 !important;
+    border-color: #f0a8af;
+}
+.btn:disabled {
+    cursor: not-allowed;
+    opacity: .55;
+}
+.pageBreadcrumb {
+    background-color: var(--white);
+    padding: 16px 20px;
+    border-bottom: 2px solid var(--borderColor);
+    border-radius: 0 0 4px 4px;
+    margin-bottom: 15px;
+}
+.pageBreadcrumb h6 {
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0;
+    color:  var(--themeColor);
+}
+ul.counterList li {
+    padding: 0 7px;
+}
+ul.counterList li:first-of-type {
+    padding-left: 0;
+}
+ul.counterList li:last-of-type {
+    padding-right: 0;
+}
+.custom-card {
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px 50px 20px 20px;
+    border-radius: 10px 10px 5px 5px;
+    border-top: 6px solid transparent;
+    background-color: var(--white);
+    position: relative;
+}
+.custom-card h6 {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--contentColor);
+    margin: 0 0 10px;
+}
+.custom-card h5 {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--themeColor);
+    margin: 0;
+}
+.custom-card .custom-card-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.custom-card .custom-card-icon i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 26px;
+}
+.custom-card-green {
+    border-color: #FFDF00;
+}
+.custom-card-icon-green {
+    border: 2px solid #FFDF00;
+   color:#FFDF00;
+}
+.custom-card-purple {
+    border-color: #b3b3ff;
+}
+.custom-card-icon-purple {
+    border: 2px solid #b3b3ff;
+   color:#b3b3ff;
+}
+.custom-card-orange {
+    border-color: #ffa366;
+}
+.custom-card-icon-orange {
+    border: 2px solid #ffa366;
+   
+}
+.custom-card-blue {
+    border-color:#33bbff;
+}
+.custom-card-icon-blue {
+    border: 2px solid #33bbff;
+}
+.custom-card-red {
+    border-color: #ff8080;
+   color:red;
+}
+.custom-card-icon-red {
+    border: 2px solid #ff8080;
+}
+
+
+let auth = `Bearer ${window.location.host.split(".")[0] === 'app' ? sessionStorage.token : localStorage.token}`;
+let tenant = window.location.host.split(".")[0] === 'app' ? sessionStorage.tenant : localStorage.tenant;
+let headers = { headers: { "X-Authorization": auth, name: tenant, "x-project-id": localStorage.selectedProjectId } };
+
+class AllDevices extends React.Component {
+	state = {
+		getCounterData : {
+			seasons: 0,
+           matches: 0,
+          venues:0,             
+           cities: 0
+		}
+	}
+
+	componentWillMount() {
+		this.getCounterData();
+	}
+
+	getCounterData = () => {
+		let url = window.location.origin + '/api/faas/gateway/api/v1/counters/matches/cities/venues/sessions'
+		axios.get(url, headers)
+			.then(res => {
+				const getCounterData = res.data.data;
+				this.setState({ getCounterData})
+			})
+	}
+
+	render() {
+		return (
+			<React.Fragment>
+				<div className="contentBox">
+					<div className="pageBreadcrumb">
+						<h6>Indian Premiere League</h6>
+					</div>
+					<ul className="counterList listStyleNone flex">
+						<li className="fx-b25">
+							<div className="custom-card custom-card-purple">
+								<h6>Total Seasons</h6>
+								<h5>{this.state.getCounterData.seasons}</h5>
+								<div className="custom-card-icon custom-card-icon-purple"><i class="fa fa-globe" aria-hidden="true"></i></div>
+							</div>
+						</li>
+						<li className="fx-b25">
+							<div className="custom-card custom-card-green">
+								<h6>Total Matches</h6>
+								<h5>{this.state.getCounterData.matches}</h5>
+								<div className="custom-card-icon custom-card-icon-green"><i class="fa fa-trophy" aria-hidden="true"></i></div>
+							</div>
+						</li>
+						<li className="fx-b25">
+							<div className="custom-card custom-card-red">
+								<h6>Total Venues</h6>
+								<h5>{this.state.getCounterData.venues}</h5>
+								<div className="custom-card-icon custom-card-icon-red"><i className="fad fa-university" aria-hidden="true"></i></div>
+							</div>
+						</li>
+						<li className="fx-b25">
+							<div className="custom-card custom-card-orange">
+								<h6>Total Cities</h6>
+								<h5>{this.state.getCounterData.cities}</h5>
+								<div className="custom-card-icon custom-card-icon-orange"><i className="fad fa-map-marker-alt text-danger"></i></div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</React.Fragment>
+		)
+	}
+}
+
+ReactDOM.render(<AllDevices />, document.querySelector("#app"))
